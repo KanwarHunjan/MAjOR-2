@@ -1,2 +1,6 @@
 # MAjOR-2
 Social Media Analysis to find depressed users.
+
+Depression is major mental health issue in the world right now and twitter/social media users usage pattern can be analyzed into finding patterns in depressed users and classifying the same.
+
+Major depression comprises a genuine test in close to home and general wellbeing. A huge number of individuals every year experience the ill effects of sadness and just a portion gets satisfactory treatment. The expanding utilization of web based life systems, for example, Facebook, Twitter, Instagram the web has created and is delivering immense volume of information. Business firms are and different associations are keen on finding new business insign to build business execution. We investigate the possibility to utilize internet based life to recognize and analyze sadness in people. We first import the client information from twitter and study them . We use these conduct prompts, experience delineate that gives assessments of the danger of misery. We trust our discoveries and strategies might be helpful in creating instruments for distinguishing the beginning of significant discouragement, for use by human services organizations; or for the benefit of people, empowering those experiencing sorrow to be progressively proactive about their psychological wellness.
