@@ -1,0 +1,51 @@
+1. Gathering the data from Twitter or Facebook streaming API
+	Test user data would be extracted through twitter using twitter API ( Twitter4j ). The test data which is pulled from the internet, is structured and studied. It is divided into 2 parts : Depressed and not depressed, now depending upon the nature of the user's tweet (positive, negative or neutral)
+
+Twitter4J is one example of an open source Java library, which gives an advantageous API to getting to the Twitter API. Basically, here's the means by which we can collaborate with the Twitter API; we can: 
+•	Post a tweet
+•	Get course of events of a client, with a rundown of most recent tweets 
+•	Send and get immediate messages 
+•	Look for tweets and substantially more 
+This library guarantees that we can without much of a stretch do these tasks, and it additionally guarantees the security and protection of a client – for which we normally need OAuth certifications arranged in our application.
+2. Importing raw data into Hadoop & Hive
+	The Apache Hadoop software library using simple programming models that allows for the distributed processing of large data sets across clusters of computers.
+Apache Hive is a data warehouse system built on top of Hadoop. Using SQL language can query data that is stored in the Hadoop file system (HDFS). Those queries are then translated and converted into Map Reduce jobs and executed on the cluster. We then store the extracted data in Hadoop File system, from the Hive console import these logs into a Hive table and run appropriate queries on them.
+The Hadoop Distributed File System (HDFS) is the essential information stockpiling system utilized by Hadoop applications. It utilizes a Name Node and Data Node design to execute a distributed file system that gives superior access to information crosswise over very adaptable Hadoop bunches. 
+
+HDFS is a key piece of the numerous Hadoop ecosystem advancements, as it gives a dependable way to overseeing pools of huge information and supporting related enormous information examination applications. 
+
+How HDFS functions in our project?
+
+HDFS bolsters the quick exchange of information between register hubs. At its beginning, it was firmly combined with MapReduce, an automatic structure for information preparing.  At the point when HDFS takes in information, it separates the data into independent squares and conveys them to various hubs in a bunch, in this manner empowering exceptionally effective parallel preparing. 
+
+Additionally, the Hadoop Distributed File System is uniquely intended to be exceedingly shortcoming tolerant. The file system repeats, or duplicates, each bit of information on various occasions and disseminates the duplicates to singular hubs, putting somewhere around one duplicate on an alternate server rack than the others. Subsequently, the information on hubs that crash can be found somewhere else inside a bunch. This guarantees handling can proceed while information is recouped. 
+
+HDFS utilizes ace/slave design. In its underlying manifestation, each Hadoop bunch comprised of a solitary Name Node that oversaw file system activities and supporting Data Nodes that oversaw information stockpiling on individual process hubs. The HDFS components consolidate to help applications with substantial informational collections. 
+
+This ace hub "information piecing" engineering takes as its structure guides components from Google File System (GFS), an exclusive file system sketched out in Google specialized papers, just as IBM's General Parallel File System (GPFS), a configuration that supports I/O by striping squares of information over different plates, composing obstructs in parallel. While HDFS isn't Portable Operating System Interface model-agreeable, it echoes POSIX configuration style in certain viewpoints.
+
+Advantages of using HDFS?
+
+Since HDFS is normally conveyed as a major aspect of huge scale executions, support for minimal effort ware equipment is an especially valuable component. Such systems, running web look and related applications, for instance, can extend into the many petabytes and a great many hubs. They should be particularly flexible, as server disappointments are regular at such scale.
+
+3. Parsing of JSON tweets and extracting relevant information using Serde
+	From this raw data, we parse and extract the true information that we care about. Now using the get_json_object function we can access the “text” and “created_at” attributes using an XPath like query on the JSON object.
+
+JSON is based on two structures: 
+A gathering of name/esteem sets. In different dialects, this is acknowledged as an item, record, struct, lexicon, hash table, keyed rundown, or acquainted cluster, and arranged rundown of qualities. In many dialects, this is acknowledged as a cluster, vector, rundown, or grouping. 
+
+These are general information structures. For all intents and purposes all cutting edge programming dialects bolster them in some structure. It bodes well that an information group that is compatible with programming dialects additionally be founded on these structures. 
+
+The JSON group is linguistically indistinguishable to the code for making JavaScript objects. In light of this comparability, a JavaScript program can without much of a stretch believer JSON information into local JavaScript objects.
+
+Here each tweet is spoken to by a JSON-organized string on a solitary line, the principal examination task is to change this string into a progressively helpful Python object. Since the JSON design is determined as far as key/esteem sets, we'll utilize Python's dictionary type. The json module gives a mapping from JSON-arranged strings to word references with its heaps work.
+
+Arranging rust data structures using Serde:
+Serde is a system for serializing and deserializing Rust information structures effectively and conventionally. The Serde biological system comprises of information structures that realize how to serialize and deserialize themselves alongside information organizes that realize how to serialize and deserialize different things. Serde gives the layer by which these two gatherings connect with one another, permitting any bolstered information structure to be serialized and deserialized utilizing any upheld information design. 
+
+Serde is based on Rust's amazing characteristic framework. An information structure that realizes how to serialize and deserialize itself is one that executes Serde's Serialize and Deserialize qualities (or utilizations Serde's determine ascribe to naturally produce usage at assemble time). This stays away from any overhead of reflection or runtime type data. Indeed as a rule the collaboration between information structure and information arrangement can be totally enhanced away by the Rust compiler, leaving Serde serialization to play out a similar speed as a written by hand serializer for the particular choice of information structure and information position.
+
+4. Text parsing, extraction of hashtags and sentiment identification and comparison with dictionary to analyse sentiments 
+	Now we got the source data in a workable format (text, timestamp), we identify sentiment information. We compose a regular expression system that matches some positive or happy smileys: :) , :( , :/ and ;-). Also we split the text on whitespaces and identify every term which looks like a #hashtag. These matching hashtags we emit together with the date in YYYY-MM-DD format allowing us to do daily processing afterwards. Using hive, we created a sentiment score for each tweet or status which is the true interaction with Hadoop data, allowing us to pull all of the data into excel for visualization score the sentiment with +ve and -ve data.
+
+Comparison of extracted keywords with dictionary to analyze sentiments of the depressed user: Dictionary-based opinion examination works by comparing the words in a content with pre-built up dictionary. These lexicons could be based around positive/negative words or different inquiries, for example, proficient/easygoing language. Every dictionary contains a rundown of words that the client trusts compares to a specific quality (for example 'inspiration', 'lack of consideration'). This formula will concentrate on assessing the inspiration/antagonism of a content. The initial steps are to make or obtain dictionary records for positive and negative words, import the lexicons and tokenize them into positive/negative word records, and import a content to be investigated.
